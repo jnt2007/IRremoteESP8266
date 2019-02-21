@@ -312,7 +312,11 @@ class IRsend {
   void sendVestelAC(const uint64_t data, const uint16_t nbits = kVestelACBits,
                     const uint16_t repeat = kNoRepeat);
 #endif
-
+#if SEND_TCL112AC
+  void sendTcl112Ac(const unsigned char data[],
+                    const uint16_t nbytes = kTcl112AcStateLength,
+                    const uint16_t repeat = kTcl112AcDefaultRepeat);
+#endif
  protected:
 #ifdef UNIT_TEST
 #ifndef HIGH

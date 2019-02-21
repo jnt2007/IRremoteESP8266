@@ -249,6 +249,9 @@ std::string typeToString(const decode_type_t protocol, const bool isRepeat) {
     case SONY:
       result = "SONY";
       break;
+    case TCL112AC:
+      result = "TCL112AC";
+      break;
     case TOSHIBA_AC:
       result = "TOSHIBA_AC";
       break;
@@ -287,6 +290,7 @@ bool hasACState(const decode_type_t protocol) {
     case MWM:
     case PANASONIC_AC:
     case SAMSUNG_AC:
+    case TCL112AC:
     case TOSHIBA_AC:
     case WHIRLPOOL_AC:
       return true;

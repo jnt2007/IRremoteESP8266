@@ -336,7 +336,11 @@ class IRrecv {
 #endif
 #if DECODE_VESTEL_AC
   bool decodeVestelAC(decode_results *results, uint16_t nbits = kVestelACBits,
-                   bool strict = true);
+                      bool strict = true);
+#endif
+#if DECODE_TCL112AC
+  bool decodeTcl112Ac(decode_results *results, uint16_t nbits = kTcl112AcBits,
+                      bool strict = true);
 #endif
 };
 

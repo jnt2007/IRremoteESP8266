@@ -497,6 +497,10 @@ bool IRrecv::decode(decode_results *results, irparams_t *save) {
   DPRINTLN("Attempting Vestel AC decode");
   if (decodeVestelAC(results)) return true;
 #endif
+#if DECODE_TCL112AC
+  DPRINTLN("Attempting TCL112AC decode");
+  if (decodeTcl112Ac(results)) return true;
+#endif
 #if DECODE_HASH
   // decodeHash returns a hash on any input.
   // Thus, it needs to be last in the list.
