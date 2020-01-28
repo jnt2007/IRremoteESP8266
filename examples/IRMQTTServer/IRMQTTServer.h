@@ -49,6 +49,10 @@ const bool kInvertTxOutput = false;
 // Default GPIO the IR demodulator is connected to/controlled by. GPIO 14 = D5.
 const int8_t kDefaultIrRx = 14;  // <=- CHANGE_ME (optional)
 
+#define buttonPin D7
+int button = 1;
+bool alredyDisabled = true;
+
 // Enable/disable receiving/decoding IR messages entirely.
 // Note: IR_RX costs about 40k+ of program memory.
 #define IR_RX true
@@ -232,7 +236,7 @@ const uint16_t kJsonAcStateMaxSize = 1024;  // Bytes
 // See `isSerialGpioUsedByIr()`.
 // Note: Debug costs ~6k of program space.
 #ifndef DEBUG
-#define DEBUG false  // Change to 'true' for serial debug output.
+#define DEBUG true  // Change to 'true' for serial debug output.
 #endif  // DEBUG
 
 // ----------------- End of User Configuration Section -------------------------

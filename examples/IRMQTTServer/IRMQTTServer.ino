@@ -2041,6 +2041,10 @@ void init_vars(void) {
 }
 
 void setup(void) {
+
+  pinMode(buttonPin, INPUT);
+  pinMode(LED_BUILTIN, OUTPUT);
+
 #if DEBUG
   if (!isSerialGpioUsedByIr()) {
 #if defined(ESP8266)
@@ -2544,6 +2548,14 @@ void sendMQTTDiscovery(const char *topic) {
 #endif  // MQTT_DISCOVERY_ENABLE
 #endif  // MQTT_ENABLE
 
+void setCustomState(stdAc::state_t *state) {
+  IRac::initState(state, TECO, -1, false, stdAc::opmode_t::kOff,
+            25, true,  // 25 degrees Celsius
+            stdAc::fanspeed_t::kAuto, stdAc::swingv_t::kOff,
+            stdAc::swingh_t::kOff, false, false, false, false, false, false,
+            false, -1, -1);
+}
+
 void loop(void) {
   server.handleClient();  // Handle any web activity
 
@@ -2650,6 +2662,27 @@ void loop(void) {
   }
 #endif  // IR_RX
   delay(100);
+
+  button = digitalRead(buttonPin);
+  if (button == 0 && !alredyDisabled) {
+    digitalWrite(BUILTIN_LED, HIGH);
+    stdAc::state_t state;
+    setCustomState(&state);
+    climate[0]->next = state;
+    IRac *ac_ptr = climate[chan];
+    lastClimateSucceeded = sendClimate("", false, false, true, true, ac_ptr);
+    Serial.println("Disabled");
+    if (lastClimateSucceeded)
+      alredyDisabled = true;
+    delay(500);
+  }
+  else if (button == 0 && alredyDisabled) {
+    digitalWrite(BUILTIN_LED, LOW);
+  }
+  else {
+    digitalWrite(BUILTIN_LED, LOW);
+    alredyDisabled = false;
+  }
 }
 
 // Arduino framework doesn't support strtoull(), so make our own one.
