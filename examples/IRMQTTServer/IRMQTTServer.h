@@ -29,7 +29,7 @@
 
 #ifndef EXAMPLES_ENABLE
 // Whether or not examples are included. `false` saves ~2.5K of program space.
-#define EXAMPLES_ENABLE true
+#define EXAMPLES_ENABLE false
 #endif  // EXAMPLES_ENABLE
 
 // Uncomment one of the following to manually override what
@@ -61,7 +61,7 @@ const uint8_t kNrOfIrTxGpios = 1;
 // Default GPIO the IR LED is connected to/controlled by. GPIO 4 = D2.
 // For an ESP-01 we suggest you use RX/GPIO3/Pin 7. i.e. kDefaultIrLed = 3
 // Note: A value of -1 means unused.
-const int8_t kDefaultIrLed = 4;  // <=- CHANGE_ME (optional)
+const int8_t kDefaultIrLed = 2;  // <=- CHANGE_ME (optional)
 
 // **DANGER** Optional flag to invert the output. (default = false)
 //            `false`: The LED is illuminated when the GPIO is HIGH.
@@ -73,7 +73,7 @@ const bool kInvertTxOutput = false;
 
 // Default GPIO the IR demodulator is connected to/controlled by. GPIO 14 = D5.
 // Note: GPIO 16 won't work on the ESP8266 as it does not have interrupts.
-const int8_t kDefaultIrRx = 14;  // <=- CHANGE_ME (optional)
+const int8_t kDefaultIrRx = 0;  // <=- CHANGE_ME (optional)
 
 // Enable/disable receiving/decoding IR messages entirely.
 // Note: IR_RX costs about 40k+ of program memory.
@@ -154,8 +154,8 @@ const uint32_t kMqttReconnectTime = 5000;  // Delay(ms) between reconnect tries.
 // If set to `false` you may miss requested state changes while the ESP was
 // down. If set to `true`, it will resend the previous desired state sent to the
 // A/C. Depending on your circumstances, you may need to change this.
-#define MQTT_CLIMATE_IR_SEND_ON_RESTART false
-#define MQTTbroadcastInterval 10 * 60  // Seconds between rebroadcasts.
+#define MQTT_CLIMATE_IR_SEND_ON_RESTART true
+#define MQTTbroadcastInterval 60  // Seconds between rebroadcasts.
 
 #define QOS 1  // MQTT broker should queue up any unreceived messages for us
 // #define QOS 0  // MQTT broker WON'T queue up messages for us. Fire & Forget.
@@ -222,7 +222,7 @@ const uint16_t kMinUnknownSize = 2 * 10;
 // make little sense for most users as it really isn't the actual input voltage.
 // E.g. For purposes of monitoring a battery etc.
 // Note: Turning on the feature costs ~250 bytes of prog space.
-#define REPORT_VCC false  // Do we report Vcc via html info page & MQTT?
+#define REPORT_VCC true  // Do we report Vcc via html info page & MQTT?
 
 // Keywords for MQTT topics, html arguments, or config file.
 #define KEY_PROTOCOL "protocol"
@@ -264,7 +264,7 @@ const char* kLwtOffline = "Offline";
 const uint8_t kHostnameLength = 30;
 const uint8_t kPortLength = 5;  // Largest value of uint16_t is "65535".
 const uint8_t kUsernameLength = 15;
-const uint8_t kPasswordLength = 20;
+const uint8_t kPasswordLength = 25;
 
 // -------------------------- Json Settings ------------------------------------
 

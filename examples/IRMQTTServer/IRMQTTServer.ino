@@ -426,7 +426,7 @@ uint32_t mqttSentCounter = 0;
 uint32_t mqttRecvCounter = 0;
 bool wasConnected = true;
 
-char MqttServer[kHostnameLength + 1] = "10.0.0.4";
+char MqttServer[kHostnameLength + 1] = "192.168.88.221";
 char MqttPort[kPortLength + 1] = "1883";
 char MqttUsername[kUsernameLength + 1] = "";
 char MqttPassword[kPasswordLength + 1] = "";
